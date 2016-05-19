@@ -14,7 +14,7 @@ public class DynamicClientFactoryClient {
         DynamicClientFactory factory=DynamicClientFactory.newInstance();
         Client client= factory.createClient("http://localhost:8080/ws/soap/hello?wsdl");
         try {
-            Object[] objects=client.invoke("sayHello","张三2");
+            Object[] objects=client.invoke("sayHello","张三3");
             System.out.println(objects[0]);
         } catch (Exception e) {
             e.printStackTrace();
