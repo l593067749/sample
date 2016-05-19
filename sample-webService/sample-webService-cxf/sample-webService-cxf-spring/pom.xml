@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>sample-webService-cxf-spring-base</module>
+        <module>sample-webService-cxf-spring-wss4j</module>
     </modules>
 
 </project>
