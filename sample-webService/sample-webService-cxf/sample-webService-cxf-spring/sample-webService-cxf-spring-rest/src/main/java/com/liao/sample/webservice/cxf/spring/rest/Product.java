@@ -1,10 +1,15 @@
 package com.liao.sample.webservice.cxf.spring.rest;
 
+import java.util.Map;
+
 public class Product {
 
     private long id;
     private String name;
     private int price;
+
+    public Map<String,Object> params;
+
 
     public Product() {
     }
@@ -13,6 +18,14 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public Map<String, Object> getParams() {
+        return params;
+    }
+
+    public void setParams(Map<String, Object> params) {
+        this.params = params;
     }
 
     public long getId() {
@@ -37,5 +50,9 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String toString(){
+        return "id:"+id+"{"+"name:"+name+"price:"+price+"}";
     }
 }

@@ -75,7 +75,7 @@ public   class BodyRestTemplate {
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
         messageConverters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
         messageConverters.add(new FormHttpMessageConverter());
-        messageConverters.add(new MappingJackson2XmlHttpMessageConverter());
+        //messageConverters.add(new MappingJackson2XmlHttpMessageConverter());
         messageConverters.add(new MappingJackson2HttpMessageConverter());
         messageConverters.add(new ByteArrayHttpMessageConverter());
 
