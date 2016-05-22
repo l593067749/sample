@@ -49,6 +49,11 @@ public class Test {
             System.out.println(p.getId());
         }
     }
+
+    /**
+     * 获取全部数据
+     * @return
+     */
     public List<Product> getProducts(){
         String url="http://localhost:8080/ws/rest/products";
         List<Product> result= RestClient.getClient().getForObject(url,List.class,"");
@@ -56,6 +61,11 @@ public class Test {
 
     }
 
+    /**
+     * 根据id拿到数据
+     * @param id
+     * @return
+     */
     public Product getProduct(Long id){
         String url="http://localhost:8080/ws/rest/product/"+id;
         Product product=RestClient.getClient().getForObject(url,Product.class,id);
@@ -98,9 +108,4 @@ public class Test {
         RestClient.exchange(url, HttpMethod.DELETE, Long.class, "");
     }
 
-    public void aa(){
-        String url="http://localhost:8080/ws/rest/products";
-        String mesage= RestClient.exchange(url,HttpMethod.GET,String.class,"123");
-        System.out.println(mesage);
-    }
 }
