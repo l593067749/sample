@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * Author liao
  * C or U by 2016/5/23-22:42
- * sample
+ * 最简单的触发
  */
 public class SimpleJobTest {
 
