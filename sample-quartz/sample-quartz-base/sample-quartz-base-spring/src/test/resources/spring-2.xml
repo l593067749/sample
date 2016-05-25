@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="cronTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="myJob" />
+        <property name="targetMethod" value="work" />
+        <!-- false表示job不会并发执行，默认为true-->
+        <property name="concurrent" value="false" />
+    </bean>
+
+    <bean id="doWork" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="cronTask" />
+        <property name="cronExpression" value="0/2  * * * * ?" />
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref local="doWork"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 工作的bean -->
+    <bean id="myJob" class="com.liao.sample.quartz.base.spring.MyJob" />
+</beans>
