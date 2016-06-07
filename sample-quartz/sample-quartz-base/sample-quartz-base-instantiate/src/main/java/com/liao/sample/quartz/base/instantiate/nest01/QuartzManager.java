@@ -45,9 +45,11 @@ public class QuartzManager {
                     .withSchedule(builder).build();
             scheduler = sf.getScheduler();
             log.error("this.name:"+scheduler.getSchedulerName());
-            // 4、调度执行
-            scheduler.scheduleJob(jobDetail, trigger);
-            scheduler.start();
+            if(!scheduler.checkExists(jobKey)){
+                // 4、调度执行
+                scheduler.scheduleJob(jobDetail, trigger);
+            }
+            if(!scheduler.isStarted()) scheduler.start();
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
