@@ -1,11 +1,8 @@
 package com.liao.sample.quartz.base.instantiate.nest01;
 
+import org.apache.log4j.Logger;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
-
-import org.apache.log4j.Logger;
-
-import static javafx.scene.input.KeyCode.T;
 
 /**
  * Author liao

@@ -14,6 +14,7 @@
     <modules>
         <module>sample-jms-activeMq-p2p</module>
         <module>sample-jms-activeMq-pubSub</module>
+        <module>sample-jms-activeMq-spring</module>
     </modules>
 
 
