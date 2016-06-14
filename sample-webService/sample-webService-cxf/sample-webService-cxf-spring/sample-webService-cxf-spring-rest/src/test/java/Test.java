@@ -1,15 +1,9 @@
 import com.liao.sample.webservice.cxf.spring.rest.Product;
 import com.liao.sample.webservice.cxf.spring.rest.ProductService;
-import com.liao.sample.webservice.cxf.spring.rest.ResponseBaseEntity;
 import com.liao.sample.webservice.cxf.spring.rest.impl.ProductServiceImpl;
 import com.sample.httpclient.resttemplate.spring.RestClient;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpMessageConverterExtractor;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.GenericType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
