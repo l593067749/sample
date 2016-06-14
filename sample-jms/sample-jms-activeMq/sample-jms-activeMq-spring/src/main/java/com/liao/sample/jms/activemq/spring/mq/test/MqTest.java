@@ -14,7 +14,7 @@ public class MqTest {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         QueueSender queueSender= context.getBean("queueSender", QueueSender.class);
-        queueSender.send("test.queue","你好啊");
+        queueSender.send("你好啊");
 
         TopicSender topicSender= context.getBean("topicSender", TopicSender.class);
         topicSender.send("test.topic","你好啊");
