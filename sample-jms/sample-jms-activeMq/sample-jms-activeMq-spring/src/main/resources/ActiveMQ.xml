@@ -49,7 +49,13 @@
 	
 	<!--Spring JmsTemplate 的消息生产者 end-->
 
-	
+
+	<bean id="testQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="test.queue"/>
+	</bean>
+
+
+
 	<!-- 消息消费者 start-->
 	
 	<!-- 定义Queue监听器 -->
@@ -57,6 +63,7 @@
 		<jms:listener destination="test.queue" ref="queueReceiver1"/>
 		<jms:listener destination="test.queue" ref="queueReceiver2"/>
 	</jms:listener-container>
+
 	
 	<!-- 定义Topic监听器 -->
 	<jms:listener-container destination-type="topic" container-type="default" connection-factory="connectionFactory" acknowledge="auto">
