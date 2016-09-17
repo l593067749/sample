@@ -10,12 +10,12 @@ import org.quartz.JobExecutionException;
 
 public class MyJob implements Job{
 	private static final Logger logger = Logger.getLogger(MyJob.class);
+	private static int i=0;
 	@Override
 	public void execute(JobExecutionContext context)
 			throws JobExecutionException {
-		System.out.println("Hello quzrtz  "+
-				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date()));
-		logger.error("Hello quzrtz  "+
+		i++;
+		logger.error("Hello quzrtz  "+i+"-"+
 				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date()));
 
 	}

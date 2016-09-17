@@ -4,51 +4,51 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 public class QuartzTest {
-
-	private static SchedulerFactory sf = new StdSchedulerFactory();
-	private static String JOB_GROUP_NAME = "ddlib";
-	private static String TRIGGER_GROUP_NAME = "ddlibTrigger";
-	public static void main(String[] args) throws SchedulerException,
+	public static void main(String[] args) throws Exception,
 			ParseException {
-		startSchedule();
-//		resumeJob();
+		QuartzTest qt=new QuartzTest();
+		long curTime=System.currentTimeMillis();
+		//开始一个调度
+		qt.startSchedule(curTime);
+		Thread.sleep(6000);
+		//恢复调度
+		System.out.println("恢复调度！");
+		qt.resumeJob(curTime);
 	}
 	/**
 	 * 开始一个simpleSchedule()调度
 	 */
-	public static void startSchedule() {
+	public  void startSchedule(long curTime) {
 		try {
 			// 1、创建一个JobDetail实例，指定Quartz
 			JobDetail jobDetail = JobBuilder.newJob(MyJob.class)
 			// 任务执行类
-					.withIdentity("job1_1", "jGroup1")
+					.withIdentity("job_"+curTime, "jGroup_"+curTime)
 					// 任务名，任务组
 					.build();
 			// 2、创建Trigger
 			SimpleScheduleBuilder builder = SimpleScheduleBuilder
 					.simpleSchedule()
 					// 设置执行次数
-				    .repeatSecondlyForTotalCount(100);
+				    .repeatSecondlyForTotalCount(10,1)
+					;
 			Trigger trigger = TriggerBuilder.newTrigger()
-					.withIdentity("trigger1_1", "tGroup1").startNow()
-					.withSchedule(builder).build();
+					.withIdentity("trigger_"+curTime, "tGroup1_"+curTime)
+					.withSchedule(builder).startAt(new Date()).build();
 			// 3、创建Scheduler
 			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 			scheduler.start();
 			// 4、调度执行
 			scheduler.scheduleJob(jobDetail, trigger);
-			try {
-				Thread.sleep(60000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 
+			Thread.sleep(3000);
 			scheduler.shutdown();
 
-		} catch (SchedulerException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -56,7 +56,7 @@ public class QuartzTest {
 	/**
 	 * 从数据库中找到已经存在的job，并重新开户调度
 	 */
-	public static void resumeJob() {
+	public  void resumeJob(long curTime) {
 		try {
 
 			SchedulerFactory schedulerFactory = new StdSchedulerFactory();
@@ -71,7 +71,7 @@ public class QuartzTest {
 							.get(j), triggerGroups.get(i)));
 					// ②-1:根据名称判断
 					if (tg instanceof SimpleTrigger
-							&& tg.getDescription().equals("tgroup1.trigger1_1")) {
+							&& tg.getDescription().equals("tGroup1_"+curTime+"."+"trigger_"+curTime)) {
 						// ②-1:恢复运行
 						scheduler.resumeJob(new JobKey(triggers.get(j),
 								triggerGroups.get(i)));

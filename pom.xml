@@ -13,6 +13,7 @@
         <module>sample-httpClient</module>
         <module>sample-quartz</module>
         <module>sample-jms</module>
+        <module>sample-j2eebase</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

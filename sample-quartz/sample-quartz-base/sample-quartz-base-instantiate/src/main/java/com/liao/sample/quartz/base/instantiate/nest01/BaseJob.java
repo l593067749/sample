@@ -21,14 +21,14 @@ public abstract class BaseJob implements Job {
      * 任务执行之前的操作
      */
     private void beForExecute(){
-        logger.error("开始执行任务！");
+        /*logger.error("开始执行任务！");*/
     }
 
     /**
      * 任务执行结束的操作
      */
     private void endExecute(){
-        logger.error("任务结束！");
+        /*logger.error("任务结束！");*/
     }
 
     @Override

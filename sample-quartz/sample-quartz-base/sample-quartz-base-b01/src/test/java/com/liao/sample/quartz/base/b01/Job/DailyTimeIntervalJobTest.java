@@ -44,7 +44,6 @@ public class DailyTimeIntervalJobTest {
                 .withSchedule(
                         DailyTimeIntervalScheduleBuilder.dailyTimeIntervalSchedule()
                         .onDaysOfTheWeek(DateBuilder.MONDAY, DateBuilder.TUESDAY) //星期一到星期二
-
                                 .startingDailyAt(TimeOfDay.hourAndMinuteOfDay(23,24))//具体时间点开始
                                 .withIntervalInSeconds(2)//设置间隔
                                 .withRepeatCount(10) //设置次数 1+10

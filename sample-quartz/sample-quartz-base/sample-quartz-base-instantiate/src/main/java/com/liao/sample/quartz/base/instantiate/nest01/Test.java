@@ -11,23 +11,23 @@ import org.quartz.TriggerKey;
 public class Test {
     public static void main(String[] args) throws InterruptedException {
         QuartzManager quartzManager = QuartzManager.getInstance();
-        JobKey oneJobKey=new JobKey("job2_11","jGroup2");
-        TriggerKey triggerKey=new TriggerKey("trigger2_11", "tGroup2");
+        long curTime=System.currentTimeMillis();
+        JobKey oneJobKey=new JobKey("job_"+curTime,"jGroup_"+curTime);
+        TriggerKey triggerKey=new TriggerKey("trigger_"+curTime, "tGroup_"+curTime);
+        quartzManager.cleanJobs();
+        //增加一个
+        quartzManager.addSchedule(MyJob.class, oneJobKey,triggerKey,"0/1  * * * * ?");
+        Thread.sleep(4000);
+        //暂停
+        quartzManager.pauseJob(oneJobKey);
+        Thread.sleep(4000);
+        //恢复
+        quartzManager.resumeJob(oneJobKey);
+        Thread.sleep(4000);
+        //修改
+        quartzManager.modiftyJob(triggerKey,"0/3  * * * * ?");
+        Thread.sleep(4000);
         //删除
         quartzManager.deleteJob(oneJobKey);
-        quartzManager.addSchedule(MyJob.class, oneJobKey,triggerKey,"0/2  * * * * ?");
-
-       /* Thread.sleep(10000);
-        quartzManager.pauseJob(oneJobKey);
-        Thread.sleep(8000);
-        quartzManager.resumeJob(oneJobKey);*/
-        Thread.sleep(4000);
-        quartzManager.pauseJob(oneJobKey);
-        quartzManager.modiftyJob(triggerKey,"0/3  * * * * ?");
-        quartzManager.resumeJob(oneJobKey);
-
-
-
-
     }
 }

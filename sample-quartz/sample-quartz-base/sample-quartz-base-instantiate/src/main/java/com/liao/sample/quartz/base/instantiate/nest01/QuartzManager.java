@@ -78,6 +78,7 @@ public class QuartzManager {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
+        log.error("操作：{}"+"deleteJob");
     }
     public void pauseJob(JobKey jobKey){
         Scheduler scheduler= null;
@@ -87,12 +88,23 @@ public class QuartzManager {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
+        log.error("操作：{}"+"pauseJob");
     }
     public void resumeJob(JobKey jobKey){
         Scheduler scheduler= null;
         try {
             scheduler = sf.getScheduler();
             scheduler.resumeJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+        log.error("操作：{}"+"resumeJob");
+    }
+    public void cleanJobs(){
+        Scheduler scheduler= null;
+        try {
+            scheduler = sf.getScheduler();
+            scheduler.clear();
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
