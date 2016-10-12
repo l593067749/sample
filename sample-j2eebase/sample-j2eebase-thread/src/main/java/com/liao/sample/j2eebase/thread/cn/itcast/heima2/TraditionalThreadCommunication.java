@@ -13,7 +13,6 @@ public class TraditionalThreadCommunication {
 		new Thread(
 				new Runnable() {
 					
-					@Override
 					public void run() {
 					
 						for(int i=1;i<=50;i++){

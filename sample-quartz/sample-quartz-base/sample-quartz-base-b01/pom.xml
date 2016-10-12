@@ -11,5 +11,11 @@
 
     <artifactId>sample-quartz-base-b01</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

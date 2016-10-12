@@ -15,8 +15,7 @@ public class MyJob implements Job{
 	public void execute(JobExecutionContext context)
 			throws JobExecutionException {
 		i++;
-		logger.error("Hello quzrtz  "+i+"-"+
-				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date()));
+		logger.error("Hello quzrtz  "+i+"-"+Thread.currentThread().getName()+"0****");
 
 	}
 

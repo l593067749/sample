@@ -15,24 +15,6 @@ public class DailyTimeIntervalJobTest {
     public void execute() throws Exception {
         SchedulerFactory factory=new StdSchedulerFactory();
         Scheduler scheduler=factory.getScheduler();
-
-        new Thread(new Runnable() {
-            public void run() {
-                int i=0;
-                while (i<20){
-                    try {
-                        Thread.currentThread().sleep(1000);
-                        System.out.println("——————1秒过去了————————");
-                        i++;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Thread.currentThread().interrupt();
-            }
-        }).start();
-
-
         //任务详情
         JobDetail jobDetail= JobBuilder.newJob(SimpleJob.class)
                 .withIdentity(JobKey.jobKey("simpleJob","simpleJobGroup"))

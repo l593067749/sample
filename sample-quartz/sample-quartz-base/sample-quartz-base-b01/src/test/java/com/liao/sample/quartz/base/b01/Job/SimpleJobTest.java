@@ -1,16 +1,9 @@
 package com.liao.sample.quartz.base.b01.Job;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.quartz.*;
-import org.quartz.impl.JobDetailImpl;
 import org.quartz.impl.StdSchedulerFactory;
-import org.quartz.simpl.SimpleJobFactory;
 
 import java.util.Date;
-
-import static org.junit.Assert.*;
 
 /**
  * Author liao
@@ -24,22 +17,6 @@ public class SimpleJobTest {
         SchedulerFactory factory=new StdSchedulerFactory();
         //获取一个调度
         Scheduler scheduler=factory.getScheduler();
-        //创建一个线程每秒有一行输出
-        new Thread(new Runnable() {
-            public void run() {
-                int i=0;
-                while (i<20){
-                    try {
-                        Thread.currentThread().sleep(1000);
-                        System.out.println("——————1秒过去了————————");
-                        i++;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Thread.currentThread().interrupt();
-            }
-        }).start();
 
         //job实例
         JobDetail jobDetail= JobBuilder.newJob(SimpleJob.class)
